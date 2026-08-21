@@ -1,0 +1,25 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import { getHomePermalink, getPermalink } from '~/utils/permalinks';
+
+const metadata = { title: 'Page not found' };
+---
+
+<Layout metadata={metadata}>
+  <section class="flex items-center px-4 py-24 md:py-32">
+    <div class="mx-auto flex max-w-xl flex-col items-center text-center">
+      <p class="font-heading text-7xl font-bold text-primary md:text-8xl">
+        <span class="sr-only">Error</span>404
+      </p>
+      <h1 class="mt-6 font-heading text-3xl font-bold tracking-tight text-heading">This page does not exist.</h1>
+      <p class="mt-4 text-lg text-muted">
+        Nothing here. If you were looking for what a curbside station costs, or what we take out of a session, both are
+        on the home page.
+      </p>
+      <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+        <a href={getHomePermalink()} class="btn-primary">Back to the home page</a>
+        <a href={getPermalink('/contact')} class="btn">Contact us</a>
+      </div>
+    </div>
+  </section>
+</Layout>

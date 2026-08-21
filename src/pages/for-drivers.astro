@@ -1,0 +1,138 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import HeroText from '~/components/widgets/HeroText.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import FAQs from '~/components/widgets/FAQs.astro';
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+import Headline from '~/components/ui/Headline.astro';
+import Tbd from '~/components/Tbd.astro';
+
+import { BRAND, HARDWARE, TERMS } from '~/brand';
+
+const metadata = {
+  title: 'For drivers',
+  description: 'How to charge at an Arclight station: tap a card, plug in, and go. No app and no account.',
+};
+---
+
+<Layout metadata={metadata}>
+  <HeroText
+    tagline="For drivers"
+    title="Tap a card. Plug in. Go."
+    subtitle="Arclight stations are owned by the property they sit in front of. There is no app, no account, and no membership."
+  />
+
+  <Features2
+    columns={3}
+    items={[
+      {
+        title: 'No app, no account',
+        description:
+          'Tap a contactless card or phone at the reader. Nothing to download, nothing to sign up for, no membership number to remember.',
+        icon: 'tabler:credit-card',
+      },
+      {
+        title: `${HARDWARE.level}, ${HARDWARE.connector}`,
+        description: `${HARDWARE.volts} volts at up to ${HARDWARE.kW} kW. Works with every non-Tesla EV. Tesla drivers need their own ${HARDWARE.connector} adapter, which we do not sell at the station.`,
+        icon: 'tabler:plug',
+      },
+      {
+        title: 'The rate is posted on the station',
+        description:
+          'Each station is priced by the owner of the property, so rates differ block to block. The rate you will pay is on the front of the unit before you tap.',
+        icon: 'tabler:receipt',
+      },
+    ]}
+  />
+
+  <WidgetWrapper containerClass="max-w-4xl mx-auto">
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-alt dark:bg-transparent"></div>
+    </Fragment>
+
+    <Headline
+      title="Who you are actually paying"
+      subtitle="Worth knowing before you plug in."
+      tagline="How this works"
+    />
+
+    <div class="rounded-lg border border-gray-200 bg-white p-6 md:p-8 dark:border-gray-700 dark:bg-slate-900">
+      <p class="text-muted">
+        The station belongs to the property owner, not to us. They bought it, they set the rate, and they keep the
+        revenue. Arclight built and installed it, and we run the payment and keep the network up. We take a dollar per
+        session plus ten percent of the charge, and the rest goes to them.
+      </p>
+      <p class="mt-4 text-muted">
+        That is why rates vary between stations, and why a station on one block might be free for residents and priced
+        at market on the next.
+      </p>
+    </div>
+  </WidgetWrapper>
+
+  <FAQs
+    title="Driver questions"
+    classes={{ container: 'max-w-4xl' }}
+    items={[
+      {
+        title: 'How do I pay?',
+        description:
+          'Tap a contactless credit or debit card, or your phone, at the reader on the station. The rate is posted on the unit. You are charged for what you use.',
+      },
+      {
+        title: 'Do I need an app?',
+        description:
+          'No. Drivers do not need an app, an account, or an RFID fob. You tap a card and charge. Property owners use our app to set their own rate, but drivers never touch it.',
+      },
+      {
+        title: 'What if my car will not charge?',
+        description:
+          'Stop the session at the station and unplug. If you were charged and got no power, contact us with the station address and the time. We can see the session on our side.',
+      },
+      {
+        title: 'Can I use a Tesla?',
+        description: `Yes, with your own ${HARDWARE.connector} adapter. Most Teslas ship with one. We do not sell or lend adapters at the station.`,
+      },
+      {
+        title: 'Is the space reserved for charging?',
+        description:
+          'Not necessarily. Many of these stations sit on the public way, where the parking space is open to anyone. Check the posted signage at the station.',
+      },
+    ]}
+  />
+
+  <WidgetWrapper containerClass="max-w-4xl mx-auto pt-0 md:pt-0 lg:pt-0">
+    <div class="rounded-lg border border-gray-200 bg-white p-6 md:p-8 dark:border-gray-700 dark:bg-slate-900">
+      <h2 class="font-heading text-xl font-bold text-heading">Refunds and faults</h2>
+      <div class="mt-4">
+        {
+          TERMS.insuranceCarried ? (
+            <p class="text-muted">{TERMS.insuranceCarried}</p>
+          ) : (
+            <p class="text-muted">
+              <Tbd label="refund and fault policy" />
+              <span class="mt-3 block">
+                A stated policy has to go here before launch: what happens when a station faults mid-session, when a
+                vehicle refuses to charge, and how long a refund takes. A public page without one becomes a complaint
+                magnet, and the property owner is the one who fields the complaint.
+              </span>
+            </p>
+          )
+        }
+      </div>
+      <p class="mt-6 border-t border-gray-200 pt-4 text-sm text-muted dark:border-gray-700">
+        Problem with a station? Email
+        {
+          BRAND.email ? (
+            <a href={`mailto:${BRAND.email}`} class="text-primary underline underline-offset-4">
+              {' '}
+              {BRAND.email}
+            </a>
+          ) : (
+            <Tbd label="contact email" ref="Open item 9" />
+          )
+        }
+        with the station address and roughly when it happened.
+      </p>
+    </div>
+  </WidgetWrapper>
+</Layout>

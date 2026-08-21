@@ -1,0 +1,81 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import HeroText from '~/components/widgets/HeroText.astro';
+import Content from '~/components/widgets/Content.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import { getPermalink } from '~/utils/permalinks';
+
+const metadata = {
+  title: 'About',
+  description:
+    'Arclight builds curbside EV charging stations in Chicago that the property owner owns outright, sets the rate on, and earns from.',
+};
+---
+
+<Layout metadata={metadata}>
+  <HeroText tagline="About" title="A contractor, not a charging network" />
+
+  <Content>
+    <Fragment slot="content">
+      <p class="text-lg">
+        I run a contracting business in Chicago, and over the past few years of owning an EV in the city, I ran into the
+        same problem again and again: there was nowhere easy to charge. I'd either head to an overcrowded charging
+        station, plan my night around charging at 1 a.m. when no one else was around, or white-knuckle it home hoping I
+        wouldn't run out of charge. The charging infrastructure just wasn't there, and I quickly learned I wasn't the
+        only one feeling it. If you didn't have a garage, you were largely out of luck.
+      </p>
+      <p class="mt-4 text-lg">
+        That's why we started building a different model: one where the property owner owns the charging station at the
+        curb, sets their own price, and gets paid every time someone plugs in. We install it, we keep the payments
+        working, and we take a dollar a session plus ten percent. That is the entire business.
+      </p>
+      <p class="mt-4 text-lg">
+        We are not a charging network. We do not want to own equipment on your property or lock you into a ten-year site
+        agreement. The station is yours. If you sell the building, it goes with it.
+      </p>
+    </Fragment>
+  </Content>
+
+  <Content
+    isReversed
+    title="What we will not do"
+    items={[
+      {
+        title: 'Upgrade your service quietly',
+        description:
+          'If your panel is full, we tell you and quote it as separate work. You decide. No surprise line items after the fact.',
+        icon: 'tabler:alert-triangle',
+      },
+      {
+        title: 'Take a deposit on a property that is wrong for this',
+        description:
+          'No curb frontage, no parking area, or no spare panel capacity. We would rather say so on the first call.',
+        icon: 'tabler:hand-stop',
+      },
+      {
+        title: 'Do informal wiring',
+        description:
+          'Every mains connection is permitted with the city and inspected. There is no version of this where we skip that.',
+        icon: 'tabler:shield-check',
+      },
+      {
+        title: 'Lock you in',
+        description:
+          'No contract, no monthly fee, and no term. If you want to stop using our payments, the station is still yours.',
+        icon: 'tabler:lock-open',
+      },
+    ]}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-alt dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+
+  <CallToAction actions={[{ variant: 'primary', text: 'Get an estimate', href: getPermalink('/#estimate') }]}>
+    <Fragment slot="title">Find out what your curb is worth</Fragment>
+    <Fragment slot="subtitle">
+      Send us your address and we will take a look at your panel, your curb, and any rebates you may qualify for. If it
+      turns out not to be a good fit, we will tell you honestly. 🙂
+    </Fragment>
+  </CallToAction>
+</Layout>

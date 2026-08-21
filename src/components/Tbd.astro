@@ -1,0 +1,30 @@
+---
+/**
+ * Renders an unresolved value from `src/brand.ts` as a loud amber chip.
+ *
+ * The loudness is deliberate. A missing licence number or a missing session
+ * minimum should be impossible to miss during review and impossible to ship by
+ * accident. Quietly omitting the value would let the page look finished when it
+ * is not.
+ */
+export interface Props {
+  /** What is missing, in a couple of words. */
+  label: string;
+  /** Optional pointer to the open item that tracks it. */
+  ref?: string;
+}
+
+const { label, ref } = Astro.props;
+---
+
+<span
+  class="inline-flex items-center gap-1.5 rounded-md border border-amber-500/60 bg-amber-50 px-2 py-0.5 align-baseline text-[0.8em] font-semibold uppercase tracking-wide text-amber-800 dark:border-amber-400/50 dark:bg-amber-400/10 dark:text-amber-300"
+  title={ref ? `Unresolved: ${ref}` : 'Unresolved before launch'}
+>
+  <svg aria-hidden="true" viewBox="0 0 16 16" class="h-3 w-3 shrink-0 fill-current">
+    <path
+      d="M8 1.5 15 14H1L8 1.5Zm0 4.25a.75.75 0 0 0-.75.75v2.75a.75.75 0 0 0 1.5 0V6.5A.75.75 0 0 0 8 5.75Zm0 5.5a.9.9 0 1 0 0 1.8.9.9 0 0 0 0-1.8Z"
+    ></path>
+  </svg>
+  TBD: {label}
+</span>

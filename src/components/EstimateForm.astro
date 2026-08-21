@@ -1,0 +1,207 @@
+---
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+import Headline from '~/components/ui/Headline.astro';
+import { FORM_ENDPOINT, PRICING, money } from '~/brand';
+import { getPermalink } from '~/utils/permalinks';
+
+/**
+ * The estimate request form.
+ *
+ * Built rather than reusing AstroWind's <Contact> widget because that widget's
+ * <form> has no `action` and no submit handler — it looks like it works, posts
+ * nowhere, and drops the lead. On a page whose entire job is capturing an
+ * address, silently losing submissions is the worst possible failure.
+ *
+ * With FORM_ENDPOINT null the form renders visibly disabled and says so. Set
+ * the endpoint in src/brand.ts, then send a real test submission before launch.
+ */
+
+export interface Props {
+  id?: string;
+}
+
+const { id = 'estimate' } = Astro.props;
+const live = Boolean(FORM_ENDPOINT);
+---
+
+<WidgetWrapper id={id} containerClass="max-w-7xl mx-auto">
+  <Headline
+    title="What it costs at your property"
+    subtitle={`Most curbside installs land between ${money(PRICING.priceLow)} and ${money(
+      PRICING.priceHigh
+    )}, covering the station, trenching, conduit, electrical, permit, and inspection. A panel upgrade costs more. We give you the number before you commit to anything.`}
+    tagline="Get an estimate"
+  />
+
+  <div class="mx-auto w-full max-w-xl">
+    {
+      !live && (
+        <div class="mb-5 rounded-lg border border-amber-500/60 bg-amber-50 p-4 text-sm text-amber-900 dark:border-amber-400/50 dark:bg-amber-400/10 dark:text-amber-200">
+          <p class="font-semibold">This form is not connected yet.</p>
+          <p class="mt-1">
+            Set <code class="font-mono">FORM_ENDPOINT</code> in <code class="font-mono">src/brand.ts</code> to a Tally
+            or Formspree URL, then send a real test submission. Until then the button is disabled on purpose. A form
+            that posts nowhere loses leads silently.
+          </p>
+        </div>
+      )
+    }
+
+    <form
+      id="estimate-form"
+      class="flex w-full flex-col rounded-lg border border-gray-200 bg-white p-4 shadow-sm sm:p-6 lg:p-8 dark:border-gray-700 dark:bg-slate-900"
+      method="POST"
+      action={FORM_ENDPOINT ?? undefined}
+      novalidate
+    >
+      <div class="mb-5">
+        <label for="address" class="block text-sm font-medium">Property address</label>
+        <input
+          type="text"
+          id="address"
+          name="address"
+          required
+          autocomplete="street-address"
+          placeholder="1234 W Example Ave, Chicago, IL"
+          class="mt-1 block w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-base dark:border-gray-700 dark:bg-slate-900"
+        />
+      </div>
+
+      <div class="mb-5">
+        <label for="email" class="block text-sm font-medium">Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          required
+          autocomplete="email"
+          placeholder="you@example.com"
+          class="mt-1 block w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-base dark:border-gray-700 dark:bg-slate-900"
+        />
+      </div>
+
+      <div class="mb-5">
+        <label for="phone" class="block text-sm font-medium">Phone number</label>
+        <input
+          type="tel"
+          id="phone"
+          name="phone"
+          required
+          autocomplete="tel"
+          inputmode="tel"
+          minlength="10"
+          placeholder="(312) 555-0142"
+          class="mt-1 block w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-base dark:border-gray-700 dark:bg-slate-900"
+        />
+        <p class="mt-2 text-sm text-muted">Required. A site check goes faster over the phone than over email.</p>
+      </div>
+
+      <fieldset class="mb-5">
+        <legend class="block text-sm font-medium">Do you own the property?</legend>
+        <div class="mt-2 flex gap-6">
+          <label class="flex cursor-pointer items-center gap-2 text-sm">
+            <input type="radio" name="owner" value="yes" required class="h-4 w-4" /> Yes
+          </label>
+          <label class="flex cursor-pointer items-center gap-2 text-sm">
+            <input type="radio" name="owner" value="no" class="h-4 w-4" /> No
+          </label>
+        </div>
+        <p class="mt-2 text-sm text-muted">
+          If you rent, we cannot wire your service, but tell your landlord we will talk to them.
+        </p>
+      </fieldset>
+
+      <div class="mb-5">
+        <label for="panel-distance" class="block text-sm font-medium">
+          Roughly how far is your panel from the curb?
+        </label>
+        <select
+          id="panel-distance"
+          name="panel_distance"
+          class="mt-1 block w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-base dark:border-gray-700 dark:bg-slate-900"
+        >
+          <option value="">Not sure</option>
+          <option value="under-25">Under 25 feet</option>
+          <option value="25-50">25 to 50 feet</option>
+          <option value="50-100">50 to 100 feet</option>
+          <option value="over-100">Over 100 feet</option>
+        </select>
+        <p class="mt-2 text-sm text-muted">A guess is fine. We measure it on site.</p>
+      </div>
+
+      <button
+        type="submit"
+        class="btn-primary mt-4 w-full disabled:cursor-not-allowed disabled:opacity-50"
+        disabled={!live}
+      >
+        {live ? 'Get an estimate' : 'Get an estimate (form not connected)'}
+      </button>
+
+      <p class="mt-4 text-center text-sm text-muted">
+        We use your address to check your panel and your block. We do not sell it, and we do not share it. See our
+        <a href={getPermalink('/privacy')} class="underline">privacy policy</a>.
+      </p>
+    </form>
+
+    <div
+      id="estimate-success"
+      hidden
+      class="rounded-lg border border-gray-200 bg-white p-8 text-center shadow-sm dark:border-gray-700 dark:bg-slate-900"
+    >
+      <p class="font-heading text-xl font-bold">Got it.</p>
+      <p class="mt-2 text-muted">
+        We will email you within a week with a range for your property and what rebates you qualify for. If it is not a
+        fit, we will tell you that too.
+      </p>
+    </div>
+  </div>
+</WidgetWrapper>
+
+<script>
+  const form = document.getElementById('estimate-form') as HTMLFormElement | null;
+  const success = document.getElementById('estimate-success');
+  const phone = document.getElementById('phone') as HTMLInputElement | null;
+
+  // Deliberately NOT a `pattern` attribute. Browsers compile `pattern` with the
+  // regex `v` flag, where an unescaped `(` or `)` inside a character class is a
+  // syntax error -- and a pattern that fails to compile is silently ignored, so
+  // the field validates everything. Counting digits in script cannot fail that way.
+  const MIN_DIGITS = 10;
+  const checkPhone = () => {
+    if (!phone) return;
+    const digits = (phone.value.match(/\d/g) || []).length;
+    phone.setCustomValidity(phone.value && digits < MIN_DIGITS ? `Enter at least ${MIN_DIGITS} digits.` : '');
+  };
+  phone?.addEventListener('input', checkPhone);
+  phone?.addEventListener('blur', checkPhone);
+
+  form?.addEventListener('submit', async (event) => {
+    if (!form.action) return;
+    event.preventDefault();
+
+    checkPhone();
+    if (!form.reportValidity()) return;
+
+    const button = form.querySelector('button[type="submit"]') as HTMLButtonElement | null;
+    if (button) {
+      button.disabled = true;
+      button.textContent = 'Sending…';
+    }
+
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' },
+      });
+      if (!response.ok) throw new Error(String(response.status));
+      form.hidden = true;
+      success?.removeAttribute('hidden');
+    } catch {
+      if (button) {
+        button.disabled = false;
+        button.textContent = 'Something went wrong, try again';
+      }
+    }
+  });
+</script>

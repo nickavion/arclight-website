@@ -1,0 +1,409 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+import Hero from '~/components/widgets/Hero.astro';
+import Content from '~/components/widgets/Content.astro';
+import Steps from '~/components/widgets/Steps.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import FAQs from '~/components/widgets/FAQs.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+import Headline from '~/components/ui/Headline.astro';
+
+import CurbsideDiagram from '~/components/CurbsideDiagram.astro';
+import EstimateForm from '~/components/EstimateForm.astro';
+
+import { FEE, PAYOUT, PRICING, REBATE, HARDWARE, money } from '~/brand';
+import { getPermalink } from '~/utils/permalinks';
+
+const metadata = {
+  title: 'Arclight | Curbside EV Charging in Chicago',
+  ignoreTitleTemplate: true,
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero ************************** -->
+
+  <Hero
+    tagline="Chicago EV charging stations"
+    actions={[
+      { variant: 'primary', text: 'Get an estimate', href: '#estimate' },
+      { text: 'How it works', href: '#how-it-works' },
+    ]}
+  >
+    <Fragment slot="title">
+      Own the charging station out front<br class="hidden sm:inline" />{' '}<span class="text-primary"
+        >Earn money on every charge</span
+      >
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      We trench it, wire it, and permit it. The station is yours, and drivers tap a card to pay you.
+    </Fragment>
+
+    <Fragment slot="image">
+      <CurbsideDiagram class="mx-auto max-w-4xl" />
+    </Fragment>
+  </Hero>
+
+  <!-- The problem ******************* -->
+
+  <Content
+    id="problem"
+    title="Chicago is short on places to charge"
+    items={[
+      {
+        title: 'Not enough stations',
+        description: 'There are a limited number of public charging stations across the Chicagoland area.',
+        icon: 'tabler:map-pin-off',
+      },
+      {
+        title: 'Winter makes it worse',
+        description: 'Cold weather cuts range, and a car left unplugged overnight starts the morning with less of it.',
+        icon: 'tabler:snowflake',
+      },
+      {
+        title: 'Your curb is already there',
+        description: 'That is where property owners come in, and where the extra income comes from.',
+        icon: 'tabler:coin',
+      },
+    ]}
+  >
+    <Fragment slot="content">
+      <p class="text-lg">
+        Chicago EV drivers lack easy access to charging. Unless you have a garage, you are planning your week around
+        finding a plug. Meanwhile you have curb frontage, an electrical panel, and no way to connect the two.
+      </p>
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-alt dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+
+  <!-- How it works ****************** -->
+
+  <Steps
+    id="how-it-works"
+    title="From your address to a paying station"
+    subtitle="Three steps. You see the full price after step one, and nothing gets ordered or dug until you approve it."
+    items={[
+      {
+        title: 'Step 1: <span class="font-medium">Send us the address</span>',
+        description:
+          'We check your panel, the curb, and your block, then quote the install and any rebate you qualify for.',
+        icon: 'tabler:map-pin',
+      },
+      {
+        title: 'Step 2: <span class="font-medium">We build it</span>',
+        description:
+          'Licensed electricians trench the run, set the conduit and disconnect, and mount the station. Permitted with the city and inspected.',
+        icon: 'tabler:tools',
+      },
+      {
+        title: 'Step 3: <span class="font-medium">You get paid</span>',
+        description:
+          'You set the hourly rate. Our owner app adjusts your pricing for peak utility rates. Drivers tap a card, and the money lands in your account.*',
+        icon: 'tabler:cash',
+      },
+    ]}
+  >
+    <Fragment slot="image">
+      <div class="rounded-lg border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-slate-900">
+        <p class="font-heading text-sm font-bold uppercase tracking-wide text-secondary">What you provide</p>
+        <ul class="mt-4 space-y-4 text-muted">
+          <li class="flex gap-3">
+            <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary"></span>
+            <span>Curb frontage or a parking area at a property you own</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary"></span>
+            <span>Access to 240-volt service</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary"></span>
+            <span>About 50 amps of spare capacity in your panel</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary"></span>
+            <span>Permission to run conduit and set the pedestal</span>
+          </li>
+        </ul>
+        <p class="mt-6 border-t border-gray-200 pt-4 text-sm text-muted dark:border-gray-700">
+          We verify all of it on site before anything is signed or ordered. If your panel is full, we tell you before
+          you spend money, not after.
+        </p>
+      </div>
+    </Fragment>
+  </Steps>
+
+  <!-- Payout timing note ************ -->
+
+  <WidgetWrapper containerClass="max-w-5xl mx-auto pt-0 md:pt-0 lg:pt-0">
+    <div
+      class="rounded-lg border border-gray-200 bg-white p-5 text-sm text-muted dark:border-gray-700 dark:bg-slate-900"
+    >
+      <p><span class="font-semibold text-default">*Payout timing.</span> {PAYOUT.disclaimer}</p>
+    </div>
+  </WidgetWrapper>
+
+  <!-- What you own ****************** -->
+
+  <Features2
+    id="features"
+    title="What you own when we leave"
+    subtitle="The hardware is yours. The rate is yours. The revenue is yours after upkeep. We run the payments and keep the network up."
+    columns={3}
+    items={[
+      {
+        title: 'You own the hardware',
+        description:
+          'The station is yours the day it is installed. No lease, no revenue share on the equipment, and no company that can switch it off.',
+        icon: 'tabler:key',
+      },
+      {
+        title: 'You set the price',
+        description:
+          'Pick your hourly rate through the app and change it whenever you want. Free for tenants, market rate for the street, or shut off overnight. Your call.',
+        icon: 'tabler:adjustments',
+      },
+      {
+        title: 'Tap and go',
+        description:
+          'Drivers tap a card at the station. Nothing for them to download, no account to create, no membership. First-time drivers charge on the first try.',
+        icon: 'tabler:credit-card',
+      },
+      {
+        title: 'We handle the money',
+        description: `We run the transaction and pay out your share. No merchant account to open, no chargebacks to fight, no reconciling. ${FEE.label}.`,
+        icon: 'tabler:building-bank',
+      },
+      {
+        title: 'Permitted and inspected',
+        description:
+          'Every mains connection is done by our licensed Chicago electrician, permitted with the city and inspected.',
+        icon: 'tabler:certificate',
+      },
+      {
+        title: `${HARDWARE.level} Charging`,
+        description: `${HARDWARE.volts} volts at ${HARDWARE.breakerAmps}A (${HARDWARE.kW} kW)* through a ${HARDWARE.connector} connector. That covers every non-Tesla EV. Tesla drivers use their own adapter.`,
+        icon: 'tabler:plug',
+      },
+    ]}
+  />
+
+  <!-- Disclaimer ******************** -->
+
+  <WidgetWrapper id="disclaimer" containerClass="max-w-4xl mx-auto pt-0 md:pt-0 lg:pt-0">
+    <div
+      class="rounded-lg border border-gray-200 bg-white p-5 text-sm text-muted dark:border-gray-700 dark:bg-slate-900"
+    >
+      <p>
+        <span class="font-semibold text-default">*Charging speed disclaimer.</span> Delivered kW depends on a number of factors,
+        including but not limited to what your panel and breaker can handle, the length of the run, the ambient temperature,
+        and what your vehicle accepts. Actual charging speed may vary.
+      </p>
+    </div>
+  </WidgetWrapper>
+
+  <!-- What you keep ***************** -->
+
+  <WidgetWrapper id="earnings" containerClass="max-w-7xl mx-auto">
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-alt dark:bg-transparent"></div>
+    </Fragment>
+
+    <Headline
+      title="What you keep"
+      subtitle="No monthly fee, no cut of the hardware, no lock-in. One line, and it is the whole arrangement."
+      tagline="The deal"
+    />
+
+    <div class="mx-auto max-w-3xl">
+      <div class="rounded-lg border border-gray-200 bg-white p-6 md:p-8 dark:border-gray-700 dark:bg-slate-900">
+        <p class="font-heading text-2xl font-bold text-heading md:text-3xl">
+          {money(FEE.perSession)} per session <span class="text-muted">+</span>{' '}
+          {FEE.percentOfCharge}% <span class="text-muted">of the charge</span>
+        </p>
+        <p class="mt-4 text-muted">
+          You set the rate. Drivers tap a card. We take a dollar per session plus ten percent of what that session
+          earned, and send you the rest.
+        </p>
+        <p class="mt-3 text-sm text-muted">*{PAYOUT.disclaimer}</p>
+        <ul class="mt-6 space-y-3 border-t border-gray-200 pt-6 text-muted dark:border-gray-700">
+          <li class="flex gap-3">
+            <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent"></span>
+            <span>No monthly platform fee, whether the station runs or sits idle.</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent"></span>
+            <span>You bought the station, so we never take a cut of the equipment.</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent"></span>
+            <span>Credit card fees are charged at cost. We do not mark them up.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </WidgetWrapper>
+
+  <!-- Rebates *********************** -->
+
+  <WidgetWrapper id="rebates" containerClass="max-w-7xl mx-auto">
+    <Headline
+      title="Rebates"
+      subtitle={`ComEd's make-ready program pays ${money(REBATE.comEdMakeReadyLow)} to ${money(
+        REBATE.comEdMakeReadyHigh
+      )} per port on qualifying installs. On a typical job that is most of the cost.`}
+      tagline="Money that already exists"
+    />
+
+    <div class="mx-auto max-w-3xl">
+      <div class="rounded-lg border border-gray-200 bg-white p-6 md:p-8 dark:border-gray-700 dark:bg-slate-900">
+        {
+          REBATE.isApprovedEVSP ? (
+            <Fragment>
+              <p class="font-heading text-lg font-bold text-heading">We file it for you.</p>
+              <p class="mt-3 text-muted">
+                We quote hardware that qualifies, install it to the program's requirements, and submit the paperwork on
+                your behalf. You do not chase the utility.
+              </p>
+            </Fragment>
+          ) : (
+            <Fragment>
+              <p class="font-heading text-lg font-bold text-heading">We will tell you what you qualify for.</p>
+              <p class="mt-3 text-muted">
+                On the first call we go through which programs your property is eligible for, what hardware they
+                require, and what the deadlines are, so none of it is a surprise once the quote is in front of you.
+              </p>
+            </Fragment>
+          )
+        }
+
+        <dl class="mt-6 grid gap-4 border-t border-gray-200 pt-6 sm:grid-cols-2 dark:border-gray-700">
+          <div>
+            <dt class="text-sm font-semibold uppercase tracking-wide text-secondary">Requires</dt>
+            <dd class="mt-1 text-muted">ENERGY STAR certified and NRTL-listed hardware</dd>
+          </div>
+          <div>
+            <dt class="text-sm font-semibold uppercase tracking-wide text-secondary">Program term ends</dt>
+            <dd class="mt-1 text-muted">{REBATE.programEnds}</dd>
+          </div>
+        </dl>
+
+        <p class="mt-6 text-sm text-muted">
+          Rebate amounts, eligibility, and funding availability are set by ComEd and change without notice. Confirm
+          current terms with ComEd before relying on any figure here.
+        </p>
+      </div>
+    </div>
+  </WidgetWrapper>
+
+  <!-- Founder *********************** -->
+
+  <Content
+    id="about"
+    title="Why we are building this"
+    items={[
+      {
+        title: 'Booking the first installs',
+        description: 'We are scheduling the first Chicago curbside installs now, a few at a time.',
+        icon: 'tabler:calendar',
+      },
+      {
+        title: 'Permitted and inspected, every time',
+        description: 'Every mains connection is pulled on a permit with the city and signed off by an inspector.',
+        icon: 'tabler:certificate',
+      },
+    ]}
+  >
+    <Fragment slot="content">
+      <p class="text-lg">
+        I run a contracting business in Chicago, and over the past few years of owning an EV in the city, I ran into the
+        same problem again and again: there was nowhere easy to charge. I'd either head to an overcrowded charging
+        station, plan my night around charging at 1 a.m. when no one else was around, or white-knuckle it home hoping I
+        wouldn't run out of charge. The charging infrastructure just wasn't there, and I quickly learned I wasn't the
+        only one feeling it. If you didn't have a garage, you were largely out of luck.
+      </p>
+      <p class="mt-4 text-lg">
+        That's why we started building a different model: one where the property owner owns the charging station at the
+        curb, sets their own price, and gets paid every time someone plugs in.
+      </p>
+      <p class="mt-6 text-base">
+        <a href={getPermalink('/about')} class="font-medium text-primary underline underline-offset-4">More about us</a>
+      </p>
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-alt dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+
+  <!-- Estimate ********************** -->
+
+  <EstimateForm id="estimate" />
+
+  <!-- FAQ *************************** -->
+
+  <FAQs
+    id="faq"
+    title="Questions owners ask"
+    tagline="FAQ"
+    classes={{ container: 'max-w-6xl' }}
+    items={[
+      {
+        title: 'What does it cost?',
+        description: `Most curbside installs run ${money(PRICING.priceLow)} to ${money(
+          PRICING.priceHigh
+        )}, covering the station, trenching, conduit, electrical, permit, and inspection. A panel upgrade costs more. We quote the exact number after we look at your panel and your curb.`,
+      },
+      {
+        title: 'Do I own it?',
+        description:
+          'Yes. The station is yours the day it is installed. Sell the building with it, change the rate, or shut it off. We do not lease equipment and we take no cut of the hardware.',
+      },
+      {
+        title: 'What do you charge me?',
+        description:
+          'One dollar per charging session plus ten percent of what that session earned. Nothing monthly, nothing on the hardware, no contract. Your electricity and upkeep come out of your side.',
+      },
+      {
+        title: 'Who sets the price drivers pay?',
+        description:
+          'You do. Pick an hourly rate in the app and change it whenever you want. Market rate for the street, free for tenants, or off overnight. We do not set or approve your pricing.',
+      },
+      {
+        title: 'How do drivers pay?',
+        description:
+          'They tap a card at the station. No app, no account, and no membership on the driver side. We run the transaction and pass your share on to you.',
+      },
+      {
+        title: 'What do I need to qualify?',
+        description:
+          'Curb frontage or a parking area at your property, access to 240-volt service, and about 50 amps of spare capacity in your panel. We verify all three on site before anything is signed or ordered.',
+      },
+      {
+        title: 'What if my panel is full?',
+        description:
+          'Then we quote a panel upgrade as separate work and you decide. Feel free to contact us and we can discuss further options.',
+      },
+      {
+        title: 'Who is this not for?',
+        description:
+          'Renters who do not own the electrical service, and properties with no curb frontage or parking area. Feel free to add your info and we can discuss if you are unsure.',
+      },
+    ]}
+  />
+
+  <!-- Final CTA ********************* -->
+
+  <CallToAction actions={[{ variant: 'primary', text: 'Get an estimate', href: '#estimate' }]}>
+    <Fragment slot="title">Find out what your curb is worth</Fragment>
+    <Fragment slot="subtitle">
+      Send us your address and we will take a look at your panel, your curb, and any rebates you may qualify for. If it
+      turns out not to be a good fit, we will tell you honestly. 🙂
+    </Fragment>
+  </CallToAction>
+</Layout>

@@ -1,0 +1,61 @@
+---
+// Arclight brand tokens.
+//
+// Fonts come from Astro's native Fonts API (see `fonts` in astro.config.ts and
+// the <Font /> tags in Layout.astro), exposed as `--font-inter` and
+// `--font-space-grotesk`.
+//
+// Primary  #0E3B5C  deep harbor blue — white text on it passes AA.
+// Accent   #F2A20C  arc amber — ~1.9:1 on white. Accents, icons, rules only.
+//                   Never use it for text. See `--aw-color-accent-text` for the
+//                   darkened variant that is safe on a light background.
+//
+// Not green on purpose: every EV company uses electric green. Blue and amber
+// read as infrastructure and utilities, which is what a landlord is buying.
+---
+
+<style is:inline>
+  :root {
+    --aw-font-sans: var(--font-inter);
+    --aw-font-serif: var(--font-inter);
+    --aw-font-heading: var(--font-space-grotesk);
+
+    --aw-color-primary: rgb(14 59 92);
+    --aw-color-secondary: rgb(21 91 140);
+    --aw-color-accent: rgb(242 162 12);
+    --aw-color-accent-text: rgb(146 94 0);
+
+    --aw-color-text-heading: rgb(16 24 40);
+    --aw-color-text-default: rgb(16 24 40);
+    --aw-color-text-muted: rgb(16 24 40 / 68%);
+    --aw-color-bg-page: rgb(255 255 255);
+    --aw-color-bg-alt: rgb(246 247 249);
+
+    --aw-color-bg-page-dark: rgb(8 24 38);
+
+    ::selection {
+      background-color: rgb(242 162 12 / 35%);
+    }
+  }
+
+  .dark {
+    --aw-font-sans: var(--font-inter);
+    --aw-font-serif: var(--font-inter);
+    --aw-font-heading: var(--font-space-grotesk);
+
+    --aw-color-primary: rgb(94 158 209);
+    --aw-color-secondary: rgb(139 189 228);
+    --aw-color-accent: rgb(242 162 12);
+    --aw-color-accent-text: rgb(247 190 84);
+
+    --aw-color-text-heading: rgb(240 244 248);
+    --aw-color-text-default: rgb(226 234 242);
+    --aw-color-text-muted: rgb(226 234 242 / 68%);
+    --aw-color-bg-page: rgb(8 24 38);
+    --aw-color-bg-alt: rgb(12 33 51);
+
+    ::selection {
+      background-color: rgb(242 162 12 / 30%);
+    }
+  }
+</style>
