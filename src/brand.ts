@@ -1,5 +1,5 @@
 /**
- * Arclight — single source of truth for every fact the site asserts.
+ * EV Street Co — single source of truth for every fact the site asserts.
  *
  * Anything still unresolved is `null` on purpose. `null` values render as a
  * visible amber TBD chip (see `src/components/Tbd.astro`) instead of silently
@@ -11,11 +11,13 @@
  */
 
 export const BRAND = {
-  name: 'Arclight',
+  name: 'EV Street Co',
+
+  /** OPEN — domain not yet registered for EV Street Co. Was arclightcurb.com under the old name. */
   domain: 'arclightcurb.com',
   city: 'Chicago, IL',
 
-  /** OPEN 9 — replace before launch. castillocontracting4@gmail.com is another company's Gmail. */
+  /** OPEN 9 — replace before launch. Needs an @ the new EV Street Co domain once it is registered. */
   email: 'hello@arclightcurb.com' as string | null,
 
   /** OPEN — $4k installs do not close on a form alone. */
@@ -45,7 +47,7 @@ export const FEE = {
 /**
  * Install pricing.
  *
- * `costTypical` is Arclight's cost. `priceLow`/`priceHigh` is the customer
+ * `costTypical` is EV Street Co's cost. `priceLow`/`priceHigh` is the customer
  * range at roughly 50% gross margin.
  *
  * OPEN 2 — the ABC book's own curbside line items (Level 2 Underground Circuit

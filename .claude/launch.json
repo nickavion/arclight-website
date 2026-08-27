@@ -2,7 +2,7 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "arclight",
+      "name": "ev-street-co",
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev", "--", "--port", "4330"],
       "port": 4330,

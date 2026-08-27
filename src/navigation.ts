@@ -53,7 +53,7 @@ export const footerData = {
       : []),
   ],
   footNote: `
-    <span class="text-muted">&copy; ${new Date().getFullYear()} Arclight, Chicago IL. Electrical work performed under Illinois electrical contractor license ${
+    <span class="text-muted">&copy; ${new Date().getFullYear()} EV Street Co, Chicago IL. Electrical work performed under Illinois electrical contractor license ${
       BRAND.licenseNumber
         ? `#${BRAND.licenseNumber}`
         : `<span class="inline-flex items-center rounded-md border border-amber-500/60 bg-amber-50 px-1.5 py-0.5 text-[0.85em] font-semibold uppercase tracking-wide text-amber-800">TBD: license #</span>`

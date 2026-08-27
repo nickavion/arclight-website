@@ -1,6 +1,6 @@
-# Arclight
+# EV Street Co
 
-Marketing site for Arclight, curbside EV charging in Chicago. Property owners buy and own
+Marketing site for EV Street Co, curbside EV charging in Chicago. Property owners buy and own
 the charging station at their curb, set their own rate, and earn on every session.
 
 Built with [Astro](https://astro.build) 7 and Tailwind CSS 4, on the
@@ -56,6 +56,6 @@ the page says why.
 
 ## Custom domain
 
-To move this to arclightcurb.com: point the DNS at GitHub Pages, set `site` to the domain
+To move this to the EV Street Co domain once registered: point the DNS at GitHub Pages, set `site` to the domain
 and `base` back to `/` in `src/config.yaml`, add a `public/CNAME` file containing the domain,
 and set the custom domain in the repository's Pages settings.

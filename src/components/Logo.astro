@@ -1,9 +1,9 @@
 ---
 import { SITE } from 'astrowind:config';
 
-// Wordmark plus a mark: a J1772 handle silhouette in harbor blue with the arc
-// struck through it in amber. The amber is the "arc" in Arclight and is used
-// here as a shape, never as text.
+// Wordmark plus a mark: the EV Street Co pineapple — a golden crosshatched
+// body under a mint-and-teal crown, drawn as a shape and paired with the
+// name in text.
 ---
 
 <span class="flex items-center gap-2.5 self-center whitespace-nowrap">
@@ -14,15 +14,21 @@ import { SITE } from 'astrowind:config';
     aria-label={`${SITE?.name} mark`}
     xmlns="http://www.w3.org/2000/svg"
   >
-    <rect width="32" height="32" rx="8" fill="var(--aw-color-primary)"></rect>
-    <path
-      d="M16 5.5c-4.6 0-8.3 3.6-8.3 8.1v4.6c0 3.4 2.2 6.3 5.4 7.4v1.9h5.8v-1.9c3.2-1.1 5.4-4 5.4-7.4v-4.6c0-4.5-3.7-8.1-8.3-8.1Z"
-      fill="none"
-      stroke="#FFFFFF"
-      stroke-width="1.9"
-      stroke-linejoin="round"
-      opacity="0.92"></path>
-    <path d="M17.9 10.2 12.6 17h3.2l-1.7 5.1 5.3-6.8h-3.2l1.7-5.1Z" fill="var(--aw-color-accent)"></path>
+    <defs>
+      <clipPath id="evsc-logo-body"><ellipse cx="16" cy="20.5" rx="7.6" ry="8.6"></ellipse></clipPath>
+    </defs>
+    <g stroke="#0B0B0B" stroke-width="1.1" stroke-linejoin="round">
+      <path d="M16 12.5C12.2 11.4 8.6 9.7 7 6.6c3.7 0 7.2 1.6 9 5.9Z" fill="#7FC3B6"></path>
+      <path d="M16 12.5C19.8 11.4 23.4 9.7 25 6.6c-3.7 0-7.2 1.6-9 5.9Z" fill="#A9D9CC"></path>
+      <path d="M16 12.5C13 10.4 11 7.2 11.6 3.2 14.1 4.7 16 7.4 16 12.5Z" fill="#A9D9CC"></path>
+      <path d="M16 12.5C19 10.4 21 7.2 20.4 3.2 17.9 4.7 16 7.4 16 12.5Z" fill="#7FC3B6"></path>
+      <path d="M16 12.5C15 9.4 15 5.6 16 2.4c1 3.2 1 7 0 10.1Z" fill="#C7E7DE"></path>
+    </g>
+    <ellipse cx="16" cy="20.5" rx="7.6" ry="8.6" fill="#F6E7A0" stroke="#0B0B0B" stroke-width="1.4"></ellipse>
+    <g clip-path="url(#evsc-logo-body)" stroke="#0B0B0B" stroke-width="0.9" opacity="0.9">
+      <path d="M4 13l24 15M4 19l24 15M4 25l18 12M10 9l20 14"></path>
+      <path d="M28 13L4 28M28 19L4 34M28 25L10 37M22 9L2 23"></path>
+    </g>
   </svg>
   <span class="font-heading text-2xl font-bold tracking-tight text-heading md:text-xl">{SITE?.name}</span>
 </span>

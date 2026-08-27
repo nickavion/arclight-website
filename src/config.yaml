@@ -1,6 +1,6 @@
 site:
-  name: Arclight
-  # GitHub Pages project site. When arclightcurb.com is pointed here, change
+  name: EV Street Co
+  # GitHub Pages project site. When the custom domain is pointed here, change
   # `site` to the domain, set `base` back to '/', and add a CNAME file.
   site: 'https://nickavion.github.io'
   base: '/arclight-website'
@@ -11,14 +11,14 @@ site:
 # Default SEO metadata
 metadata:
   title:
-    default: Arclight | Curbside EV Charging in Chicago
-    template: '%s | Arclight'
-  description: 'Arclight installs a curbside Level 2 EV charging station at your Chicago property. You own it, you set the rate, and you keep what it earns.'
+    default: EV Street Co | Curbside EV Charging in Chicago
+    template: '%s | EV Street Co'
+  description: 'EV Street Co installs a curbside Level 2 EV charging station at your Chicago property. You own it, you set the rate, and you keep what it earns.'
   robots:
     index: true
     follow: true
   openGraph:
-    site_name: Arclight
+    site_name: EV Street Co
     images:
       - url: '~/assets/images/og-image.png'
         width: 1200
