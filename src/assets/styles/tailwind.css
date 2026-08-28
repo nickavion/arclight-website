@@ -50,8 +50,8 @@
   background-color: var(--aw-color-bg-alt);
 }
 
-/* Amber is ~1.9:1 on white and fails as text. `text-accent-safe` is the
-   darkened variant (#925E00, 4.9:1) for anywhere the accent must be read. */
+/* The brand yellow is ~1.05:1 on white and fails as text. `text-accent-safe`
+   is the darkened gold variant (#7A5C00, ~6.3:1) for anywhere it must be read. */
 @utility text-accent-safe {
   color: var(--aw-color-accent-text);
 }

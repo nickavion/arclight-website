@@ -6,7 +6,7 @@ the charging station at their curb, set their own rate, and earn on every sessio
 Built with [Astro](https://astro.build) 7 and Tailwind CSS 4, on the
 [AstroWind](https://github.com/arthelokyo/astrowind) template.
 
-**Live:** https://nickavion.github.io/arclight-website/
+**Live:** https://evstreetco.com
 
 ## Running it
 
@@ -56,6 +56,15 @@ the page says why.
 
 ## Custom domain
 
-To move this to the EV Street Co domain once registered: point the DNS at GitHub Pages, set `site` to the domain
-and `base` back to `/` in `src/config.yaml`, add a `public/CNAME` file containing the domain,
-and set the custom domain in the repository's Pages settings.
+The site is configured for **evstreetco.com**: `site` is the domain and `base` is `/` in
+`src/config.yaml`, and `public/CNAME` contains `evstreetco.com` (it ends up at the root of the
+`gh-pages` branch on deploy, which is what tells GitHub Pages to serve the custom domain).
+
+Remaining one-time setup, done outside this repo:
+
+1. **DNS** at the registrar for evstreetco.com:
+   - Four `A` records for the apex `@` → `185.199.108.153`, `185.199.109.153`,
+     `185.199.110.153`, `185.199.111.153`
+   - One `CNAME` record for `www` → `nickavion.github.io`
+2. **GitHub → repo Settings → Pages**: set Source to the `gh-pages` branch, enter
+   `evstreetco.com` as the custom domain, and once DNS resolves tick **Enforce HTTPS**.

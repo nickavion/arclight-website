@@ -1,9 +1,9 @@
 site:
   name: EV Street Co
-  # GitHub Pages project site. When the custom domain is pointed here, change
-  # `site` to the domain, set `base` back to '/', and add a CNAME file.
-  site: 'https://nickavion.github.io'
-  base: '/arclight-website'
+  # Served from GitHub Pages on the custom domain evstreetco.com
+  # (public/CNAME + the DNS records in the README).
+  site: 'https://evstreetco.com'
+  base: '/'
   trailingSlash: false
 
   googleSiteVerificationId: false

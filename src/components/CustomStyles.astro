@@ -1,20 +1,23 @@
 ---
 // EV Street Co brand tokens.
 //
-// NOTE: this palette (harbor blue + amber) predates the pineapple logo, whose
-// colors are teal/mint and golden yellow. Revisit if a full rebrand is wanted.
+// Palette follows the pineapple logo: a teal/mint crown and a golden-yellow
+// body. The two brand colors are:
+//
+//   green   #A7D6CC  mint — the crown. Too light for text or button fills, so
+//                    it drives the tinted section background (`--aw-color-bg-alt`)
+//                    and the dark page background is a deep version of the same
+//                    hue.
+//   yellow  #FFF19A  the body. Used for accent fills, bullets, rules and text
+//                    selection. ~1.05:1 on white, so never for text — use
+//                    `--aw-color-accent-text` (dark gold) where it must be read.
+//
+// Primary is a deep teal derived from the mint so it holds up as a link color
+// and a button fill: #0F6B59 is ~6.4:1 on white, white text on it is the same.
 //
 // Fonts come from Astro's native Fonts API (see `fonts` in astro.config.ts and
 // the <Font /> tags in Layout.astro), exposed as `--font-inter` and
 // `--font-space-grotesk`.
-//
-// Primary  #0E3B5C  deep harbor blue — white text on it passes AA.
-// Accent   #F2A20C  arc amber — ~1.9:1 on white. Accents, icons, rules only.
-//                   Never use it for text. See `--aw-color-accent-text` for the
-//                   darkened variant that is safe on a light background.
-//
-// Not green on purpose: every EV company uses electric green. Blue and amber
-// read as infrastructure and utilities, which is what a landlord is buying.
 ---
 
 <style is:inline>
@@ -23,21 +26,21 @@
     --aw-font-serif: var(--font-inter);
     --aw-font-heading: var(--font-space-grotesk);
 
-    --aw-color-primary: rgb(14 59 92);
-    --aw-color-secondary: rgb(21 91 140);
-    --aw-color-accent: rgb(242 162 12);
-    --aw-color-accent-text: rgb(146 94 0);
+    --aw-color-primary: #0f6b59;
+    --aw-color-secondary: #0b5647;
+    --aw-color-accent: #fff19a;
+    --aw-color-accent-text: #7a5c00;
 
     --aw-color-text-heading: rgb(16 24 40);
     --aw-color-text-default: rgb(16 24 40);
     --aw-color-text-muted: rgb(16 24 40 / 68%);
     --aw-color-bg-page: rgb(255 255 255);
-    --aw-color-bg-alt: rgb(246 247 249);
+    --aw-color-bg-alt: #e3f2ed;
 
-    --aw-color-bg-page-dark: rgb(8 24 38);
+    --aw-color-bg-page-dark: #0a2e28;
 
     ::selection {
-      background-color: rgb(242 162 12 / 35%);
+      background-color: rgb(255 241 154 / 60%);
     }
   }
 
@@ -46,19 +49,19 @@
     --aw-font-serif: var(--font-inter);
     --aw-font-heading: var(--font-space-grotesk);
 
-    --aw-color-primary: rgb(94 158 209);
-    --aw-color-secondary: rgb(139 189 228);
-    --aw-color-accent: rgb(242 162 12);
-    --aw-color-accent-text: rgb(247 190 84);
+    --aw-color-primary: #3e9e88;
+    --aw-color-secondary: #58b7a0;
+    --aw-color-accent: #fff19a;
+    --aw-color-accent-text: #e9cf6a;
 
     --aw-color-text-heading: rgb(240 244 248);
     --aw-color-text-default: rgb(226 234 242);
     --aw-color-text-muted: rgb(226 234 242 / 68%);
-    --aw-color-bg-page: rgb(8 24 38);
-    --aw-color-bg-alt: rgb(12 33 51);
+    --aw-color-bg-page: #0a2e28;
+    --aw-color-bg-alt: #0e3a33;
 
     ::selection {
-      background-color: rgb(242 162 12 / 30%);
+      background-color: rgb(255 241 154 / 30%);
     }
   }
 </style>
