@@ -1,5 +1,5 @@
 /**
- * EV Street Co — single source of truth for every fact the site asserts.
+ * EV Street Co 
  *
  * Anything still unresolved is `null` on purpose. `null` values render as a
  * visible amber TBD chip (see `src/components/Tbd.astro`) instead of silently
@@ -14,7 +14,7 @@ export const BRAND = {
   name: 'EV Street Co',
 
   /** OPEN — domain not yet registered for EV Street Co. Was arclightcurb.com under the old name. */
-  domain: 'arclightcurb.com',
+  domain: 'evstreetco.com',
   city: 'Chicago, IL',
 
   /** OPEN 9 — replace before launch. Needs an @ the new EV Street Co domain once it is registered. */
@@ -23,8 +23,6 @@ export const BRAND = {
   /** OPEN — $4k installs do not close on a form alone. */
   phone: null as string | null,
 
-  /** OPEN 10 — Illinois electrical contractor licence. Belongs in the footer and on /contact. */
-  licenseNumber: null as string | null,
 
   /** Claim the handles before linking them. An icon pointing at an empty profile is worse than no icon. */
   social: {
@@ -130,7 +128,14 @@ export const TERMS = {
  * Set to a Tally or Formspree endpoint before launch, then test that a real
  * submission lands in an inbox someone reads.
  */
-export const FORM_ENDPOINT = null as string | null;
+export const FORM_ENDPOINT = 'https://api.web3forms.com/submit' as string | null;
+
+/**
+ * Web3Forms access key. Public by design (see web3forms.com/faq — it's a
+ * routing address, not a secret), which is why it's fine sitting here in the
+ * client-shipped bundle rather than an env var.
+ */
+export const FORM_ACCESS_KEY = '8a89794d-333b-44ca-9f97-e0e8b01d48b4' as string | null;
 
 /** Pre-revenue. No customers, no logos, no press, no counts. Keep this empty. */
 export const PROOF = {

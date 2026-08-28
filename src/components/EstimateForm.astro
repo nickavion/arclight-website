@@ -1,7 +1,7 @@
 ---
 import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
 import Headline from '~/components/ui/Headline.astro';
-import { FORM_ENDPOINT, PRICING, money } from '~/brand';
+import { FORM_ENDPOINT, FORM_ACCESS_KEY, PRICING, money } from '~/brand';
 import { getPermalink } from '~/utils/permalinks';
 
 /**
@@ -21,7 +21,7 @@ export interface Props {
 }
 
 const { id = 'estimate' } = Astro.props;
-const live = Boolean(FORM_ENDPOINT);
+const live = Boolean(FORM_ENDPOINT && FORM_ACCESS_KEY);
 ---
 
 <WidgetWrapper id={id} containerClass="max-w-7xl mx-auto">
@@ -54,6 +54,10 @@ const live = Boolean(FORM_ENDPOINT);
       action={FORM_ENDPOINT ?? undefined}
       novalidate
     >
+      <input type="hidden" name="access_key" value={FORM_ACCESS_KEY ?? ''} />
+      {/* Honeypot: hidden from real users; if a bot fills this in, Web3Forms silently drops the submission. */}
+      <input type="checkbox" name="botcheck" class="hidden" style="display: none;" tabindex="-1" autocomplete="off" />
+
       <div class="mb-5">
         <label for="address" class="block text-sm font-medium">Property address</label>
         <input
